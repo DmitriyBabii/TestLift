@@ -1,13 +1,14 @@
 package models;
 
 import enums.Directional;
+import interfaces.PeopleAddable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Lift {
+public class Lift implements PeopleAddable {
     private static final int CAPACITY = 5;
 
     private final List<Person> people = new ArrayList<>(CAPACITY);
@@ -22,19 +23,20 @@ public class Lift {
     }
 
     public void go() {
-        if (currentFloor == countOfFloors - 1) {
-            directional = Directional.DOWN;
-        } else if (currentFloor == 0) {
-            directional = Directional.UP;
-        }
-
         if (directional == Directional.UP) {
             currentFloor++;
         } else {
             currentFloor--;
         }
+
+        if (currentFloor == countOfFloors - 1) {
+            directional = Directional.DOWN;
+        } else if (currentFloor == 0) {
+            directional = Directional.UP;
+        }
     }
 
+    @Override
     public void addPeople(List<Person> peopleFromFloor) {
         people.addAll(peopleFromFloor);
         System.out.println("Come to lift: " + peopleFromFloor.size());
@@ -101,6 +103,10 @@ public class Lift {
         } else {
             directional = Directional.UP;
         }
+    }
+
+    public List<Person> getPeople() {
+        return people;
     }
 
     public Directional getDirectional() {

@@ -1,11 +1,12 @@
 package models;
 
 import enums.Directional;
+import interfaces.PeopleAddable;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Floor {
+public class Floor implements PeopleAddable {
 
     private final int numberOfFloor;
     private final List<Person> people;
@@ -15,7 +16,10 @@ public class Floor {
         this.people = people;
     }
 
+    @Override
     public void addPeople(List<Person> peopleFromFloor) {
+        peopleFromFloor = peopleFromFloor.stream()
+                .peek(person -> person.setCurrentFloor(numberOfFloor)).collect(Collectors.toList());
         people.addAll(peopleFromFloor);
     }
 
@@ -29,10 +33,14 @@ public class Floor {
 
     }
 
-    private List<Person> remove(List<Person> people) {
+    protected List<Person> remove(List<Person> people) {
         for (Person person : people) {
             this.people.remove(person);
         }
+        return people;
+    }
+
+    public List<Person> getPeople() {
         return people;
     }
 

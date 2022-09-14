@@ -1,12 +1,16 @@
 package models;
 
 public class Person {
-    private final int startFloor;
-    private int needFloor;
+    private int currentFloor;
+    private final int needFloor;
 
     public Person(int startFloor, int needFloor) {
-        this.startFloor = startFloor;
+        this.currentFloor = startFloor;
         this.needFloor = needFloor;
+    }
+
+    public void setCurrentFloor(int currentFloor) {
+        this.currentFloor = currentFloor;
     }
 
     public int getNeedFloor() {
@@ -14,14 +18,21 @@ public class Person {
     }
 
     public boolean needUp() {
-        return needFloor > startFloor;
+        return needFloor > currentFloor;
     }
 
     public boolean needDown() {
-        return needFloor < startFloor;
+        return needFloor < currentFloor;
     }
 
     public boolean needMove() {
-        return startFloor != needFloor;
+        return currentFloor != needFloor;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + currentFloor +
+                ", " + needFloor +
+                '}';
     }
 }
