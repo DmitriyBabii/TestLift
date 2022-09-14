@@ -19,7 +19,8 @@ public class Floor implements PeopleAddable {
     @Override
     public void addPeople(List<Person> peopleFromFloor) {
         peopleFromFloor = peopleFromFloor.stream()
-                .peek(person -> person.setCurrentFloor(numberOfFloor)).collect(Collectors.toList());
+                .peek(person -> person.setCurrentFloor(numberOfFloor))
+                .collect(Collectors.toList());
         people.addAll(peopleFromFloor);
     }
 

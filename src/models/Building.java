@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Building {
-    private static final int MIN_FLOURS = 5;
-    private static final int MAX_FLOURS = 20;
+    private static final int MIN_FLOORS = 5;
+    private static final int MAX_FLOORS = 20;
 
-    private static final int MIN_PEOPLE_ON_FLOUR = 0;
-    private static final int MAX_PEOPLE_ON_FLOUR = 10;
+    private static final int MIN_PEOPLE_ON_FLOOR = 0;
+    private static final int MAX_PEOPLE_ON_FLOOR = 10;
 
     private final List<Floor> floors;
     private final Lift lift;
 
     public Building() {
-        int countFloors = Randomize.getRandomBetween(MIN_FLOURS, MAX_FLOURS);
+        int countFloors = Randomize.getRandomBetween(MIN_FLOORS, MAX_FLOORS);
         this.floors = new ArrayList<>(countFloors);
         for (int i = 0; i < countFloors; i++) {
-            int countOfPeople = Randomize.getRandomBetween(MIN_PEOPLE_ON_FLOUR, MAX_PEOPLE_ON_FLOUR);
+            int countOfPeople = Randomize.getRandomBetween(MIN_PEOPLE_ON_FLOOR, MAX_PEOPLE_ON_FLOOR);
             List<Person> people = new ArrayList<>(countOfPeople);
             for (int j = 0; j < countOfPeople; j++) {
                 int floor = Randomize.getRandomBetween(0, countFloors - 1);
